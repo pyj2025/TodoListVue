@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="wrapper">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addTodo="addTodo"></TodoInput>
     <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
@@ -51,17 +51,27 @@ export default {
 </script>
 
 <style>
- body {
+  body {
     text-align: center;
     background-color: #F6F6F8;
   }
+
+  #wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 7fr 1fr;
+  }
+
   input {
     border-style: groove;
     width: 200px;
   }
+
   button {
     border-style: groove;
   }
+
   .shadow {
     box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03)
   }

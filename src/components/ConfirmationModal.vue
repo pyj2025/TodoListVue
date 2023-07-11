@@ -19,7 +19,12 @@
       </div>
     </transition>
 </template>
-  
+
+<script>
+export default {
+}
+</script>
+
 <style lang="css">
   .closeModalBtn {
     color: #62acde;
