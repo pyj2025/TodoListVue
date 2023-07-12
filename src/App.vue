@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodo="handleAdd"></TodoInput>
-    <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
+    <TodoInput v-on:addItem="handleAdd"></TodoInput>
+    <TodoList v-bind:propsdata="items" @removeItem="handleRemove"></TodoList>
     <TodoFooter v-on:deleteAll="handleDeleteAll"></TodoFooter>
   </div>
 </template>
@@ -29,7 +29,7 @@ export default {
       localStorage.setItem(item, item);
       this.items.push(item);
     },
-    removeTodo(item, idx) {
+    handleRemove(item, idx) {
       localStorage.removeItem(item);
       this.items.splice(idx, 1);
     },
