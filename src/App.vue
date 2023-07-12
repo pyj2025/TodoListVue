@@ -1,9 +1,9 @@
 <template>
-  <div id="wrapper">
+  <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addTodo="addTodo"></TodoInput>
+    <TodoInput v-on:addTodo="handleAdd"></TodoInput>
     <TodoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></TodoList>
-    <TodoFooter v-on:removeAll="clearAll"></TodoFooter>
+    <TodoFooter v-on:deleteAll="handleDeleteAll"></TodoFooter>
   </div>
 </template>
 
@@ -17,27 +17,27 @@ export default {
   name: 'App',
   data() {
     return {
-      todoItems: []
+      items: []
     }
   },
   methods: {
-    clearAll() {
+    handleDeleteAll() {
       localStorage.clear();
-      this.todoItems = [];
+      this.items = [];
     },
-		addTodo(todoItem) {
-			localStorage.setItem(todoItem, todoItem);
-			this.todoItems.push(todoItem);
+		handleAdd(item) {
+			localStorage.setItem(item, item);
+			this.items.push(item);
 		},
-    removeTodo(todoItem, index) {
-      localStorage.removeItem(todoItem);
-      this.todoItems.splice(index, 1);
+    removeTodo(item, idx) {
+      localStorage.removeItem(item);
+      this.items.splice(idx, 1);
     }
   },
   created() {
 		if (localStorage.length > 0) {
 			for (var i = 0; i < localStorage.length; i++) {
-				this.todoItems.push(localStorage.key(i));
+				this.items.push(localStorage.key(i));
 			}
 		}
   },
@@ -56,23 +56,11 @@ export default {
     background-color: #F6F6F8;
   }
 
-  #wrapper {
-    width: 100%;
-    height: 100%;
+  #app {
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-rows: 1fr 1fr 7fr 1fr;
-  }
-
-  input {
-    border-style: groove;
-    width: 200px;
-  }
-
-  button {
-    border-style: groove;
-  }
-
-  .shadow {
-    box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.03)
+    grid-template-rows: 10% 10% 70% 10%;
+    overflow: hidden;
   }
 </style>

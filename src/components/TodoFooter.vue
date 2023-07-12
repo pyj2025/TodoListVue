@@ -1,30 +1,32 @@
 <template>
-  <div class="clearAllContainer">
-    <span class="clearAllBtn" @click="clearTodo">Clear All</span>
+  <div class="footerContainer">
+    <div class="deleteAllBtn" @click="handleDeleteAll">Delete All</div>
   </div>
 </template>
 
 <script>
 export default {
   methods: {
-    clearTodo() {
-      this.$emit('removeAll');
+    handleDeleteAll() {
+      this.$emit('deleteAll');
     }
   }
 }
 </script>
 
 <style scoped>
-  .clearAllContainer {
-    width: 8.5rem;
-    height: 50px;
-    line-height: 50px;
-    background-color: white;
-    border-radius: 5px;
-    margin: 0 auto;
+  .footerContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
-  .clearAllBtn {
-    color: #e20303;
-    display: block;
+  .deleteAllBtn {
+    background-color: red;
+    color: rgb(230, 227, 227);
+    padding: 10px 10px;
+    border-radius: 10%;
+    cursor: pointer;
   }
 </style>

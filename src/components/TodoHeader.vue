@@ -1,7 +1,7 @@
 <template>
-    <header>
-      <h1>TodoList Vue</h1>
-    </header>
+    <div class="headerText">
+      TodoList-Vue
+    </div>
 </template>
 
 <script>
@@ -10,9 +10,15 @@ export default {
 </script>
 
 <style scoped>
-  h1 {
+  .headerText {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    font-size: x-large;
     color: #2F3B52;
-    font-weight: 900;
-    margin: 2.5rem 0 1.5rem;
   }
 </style>
