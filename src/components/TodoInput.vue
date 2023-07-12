@@ -1,6 +1,8 @@
 <!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-  <div class="flex items-center justify-center wrapper">
+  <div
+    class="flex items-center justify-center mb-6 bg-white w-full h-8 leading-8 wrapper"
+  >
     <input
       type="text"
       v-model="newItem"
@@ -53,9 +55,6 @@ export default {
 
 <style scoped>
 .wrapper {
-  background: white;
-  width: 95%;
-  height: 30px;
   line-height: 30px;
   border-radius: 5px;
   border: 1px solid red;
