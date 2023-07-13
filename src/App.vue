@@ -2,7 +2,11 @@
   <div id="app">
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addItem="handleAdd"></TodoInput>
-    <TodoList v-bind:propsdata="items" @removeItem="handleRemove"></TodoList>
+    <TodoList
+      v-bind:propsdata="items"
+      @updateItem="handleUpdate"
+      @removeItem="handleRemove"
+    ></TodoList>
     <TodoFooter v-on:deleteAll="handleDeleteAll"></TodoFooter>
   </div>
 </template>
@@ -26,10 +30,14 @@ export default {
       this.items = [];
     },
     handleAdd(item) {
-      localStorage.setItem(item, item);
+      localStorage.setItem(item);
       this.items.push(item);
     },
     handleRemove(item, idx) {
+      localStorage.removeItem(item);
+      this.items.splice(idx, 1);
+    },
+    handleUpdate(item, idx) {
       localStorage.removeItem(item);
       this.items.splice(idx, 1);
     },

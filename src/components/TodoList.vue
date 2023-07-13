@@ -9,14 +9,14 @@
           {{ item }}
         </div>
         <span
-          class="text-green-700"
+          class="text-green-800 cursor-pointer"
           type="button"
           @click="handleUpdate(item, idx)"
         >
-          <i class="fas fa-square-pen" aria-hidden="true"></i>
+          <i class="fas fa-pencil-alt" aria-hidden="true"></i>
         </span>
         <span
-          class="text-red-700"
+          class="text-red-700 cursor-pointer"
           type="button"
           @click="handleRemove(item, idx)"
         >
@@ -32,7 +32,7 @@ export default {
   props: ["propsdata"],
   methods: {
     handleUpdate(item, idx) {
-      this.$emit("removeItem", item, idx);
+      this.$emit("updateItem", item, idx);
     },
     handleRemove(item, idx) {
       this.$emit("removeItem", item, idx);
