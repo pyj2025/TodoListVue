@@ -1,21 +1,39 @@
 <template>
-  <section>
+  <div>
     <transition-group name="list" tag="ul">
       <li v-for="(item, idx) in propsdata" :key="item" class="shadow">
-        <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-        {{ item }}
-        <span class="removeBtn" type="button" @click="handleRemove(item, idx)">
-          <i class="far fa-trash-alt" aria-hidden="true"></i>
+        <span class="text-blue-800 mr-1 leading-10">
+          <i class="fas fa-check" aria-hidden="true"></i>
+        </span>
+        <div>
+          {{ item }}
+        </div>
+        <span
+          class="text-green-700"
+          type="button"
+          @click="handleUpdate(item, idx)"
+        >
+          <i class="fas fa-square-pen" aria-hidden="true"></i>
+        </span>
+        <span
+          class="text-red-700"
+          type="button"
+          @click="handleRemove(item, idx)"
+        >
+          <i class="fas fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
     </transition-group>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
   props: ["propsdata"],
   methods: {
+    handleUpdate(item, idx) {
+      this.$emit("removeItem", item, idx);
+    },
     handleRemove(item, idx) {
       this.$emit("removeItem", item, idx);
     },
@@ -39,15 +57,6 @@ li {
   padding: 0 0.9rem;
   background: white;
   border-radius: 5px;
-}
-.checkBtn {
-  line-height: 45px;
-  color: #62acde;
-  margin-right: 5px;
-}
-.removeBtn {
-  margin-left: auto;
-  color: #de4343;
 }
 
 .list-enter-active,
