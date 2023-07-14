@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addItem="handleAdd"></TodoInput>
     <TodoList
-      v-bind:propsdata="items"
+      v-bind:propsData="items"
       @updateItem="handleUpdate"
       @removeItem="handleRemove"
     ></TodoList>
@@ -30,7 +30,7 @@ export default {
       this.items = [];
     },
     handleAdd(item) {
-      localStorage.setItem(item);
+      localStorage.setItem(item, item);
       this.items.push(item);
     },
     handleRemove(item, idx) {

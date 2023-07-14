@@ -1,6 +1,6 @@
 <!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-  <div class="flex justify-center items-center mb-6 w-full h-10 rounded">
+  <div class="flex justify-center items-center w-full h-10 rounded">
     <div
       class="flex flex-row flex-nowrap bg-white w-11/12 h-8 leading-8 rounded"
     >
@@ -21,7 +21,7 @@
     </div>
 
     <WarningModal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">경고</h3>
+      <h3 slot="header">Warning</h3>
       <span slot="footer" @click="showModal = false"
         >할 일을 입력하세요.
         <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>

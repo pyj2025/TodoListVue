@@ -1,17 +1,29 @@
 <template>
-  <div>
-    <transition-group name="list" tag="ul">
-      <li v-for="(item, idx) in propsdata" :key="item" class="shadow">
-        <span class="text-blue-800 mr-1 leading-10">
-          <i class="fas fa-check" aria-hidden="true"></i>
-        </span>
-        <div>
+  <div class="flex justify-center items-center w-full h-10 rounded">
+    <transition-group
+      name="list"
+      tag="ul"
+      class="flex flex-wrap w-11/12 h-8 leading-8 rounded"
+    >
+      <li
+        v-for="(item, idx) in propsData"
+        :key="item"
+        class="flex flex-row flex-wrap w-full justify-start items-center test"
+      >
+        <div class="w-8">
+          <span class="text-blue-800 mr-1 leading-10">
+            <i class="fas fa-check" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <div :title="item" class="w-11/12">
           {{ item }}
         </div>
         <span
-          class="text-green-800 cursor-pointer"
+          class="text-green-800 cursor-pointer w-8"
           type="button"
           @click="handleUpdate(item, idx)"
+          title="Edit"
         >
           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
         </span>
@@ -19,6 +31,7 @@
           class="text-red-700 cursor-pointer"
           type="button"
           @click="handleRemove(item, idx)"
+          title="Delete"
         >
           <i class="fas fa-trash-alt" aria-hidden="true"></i>
         </span>
@@ -29,7 +42,7 @@
 
 <script>
 export default {
-  props: ["propsdata"],
+  props: ["propsData"],
   methods: {
     handleUpdate(item, idx) {
       this.$emit("updateItem", item, idx);
@@ -42,6 +55,10 @@ export default {
 </script>
 
 <style scoped>
+.test {
+  border: 1px solid red;
+}
+
 ul {
   list-style-type: none;
   padding-left: 0px;
