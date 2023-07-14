@@ -8,7 +8,7 @@
       <li
         v-for="(item, idx) in propsData"
         :key="item"
-        class="flex flex-row flex-wrap w-full justify-start items-center test"
+        class="flex flex-row flex-wrap w-full justify-start items-center"
       >
         <div class="w-8">
           <span class="text-blue-800 mr-1 leading-10">
@@ -55,10 +55,6 @@ export default {
 </script>
 
 <style scoped>
-.test {
-  border: 1px solid red;
-}
-
 ul {
   list-style-type: none;
   padding-left: 0px;

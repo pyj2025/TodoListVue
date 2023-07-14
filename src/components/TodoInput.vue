@@ -20,12 +20,8 @@
       </div>
     </div>
 
-    <WarningModal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">Warning</h3>
-      <span slot="footer" @click="showModal = false"
-        >할 일을 입력하세요.
-        <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
-      </span>
+    <WarningModal v-if="showModal" @close="handleClose">
+      Please type anything.
     </WarningModal>
   </div>
 </template>
@@ -52,6 +48,9 @@ export default {
     },
     clearInput() {
       this.newItem = "";
+    },
+    handleClose() {
+      this.showModal = false;
     },
   },
   components: {
