@@ -7,8 +7,10 @@ A simple TodoList application built with Vue.js.
 
 ## Features
 
-- Add new tasks to your todo list
-- Remove tasks from the list
+- Create new tasks to your todo list
+- Read tasks from local Storage
+- Update tasks
+- Delete tasks from the list
 - Local storage support to persist tasks
 
 ## Project setup
