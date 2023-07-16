@@ -1,18 +1,11 @@
 <template lang="html">
   <transition name="modal">
-    <div class="modal-mask" @keyup.esc="$emit('close')">
+    <div class="modal-mask">
       <div class="modal-wrapper">
-        <div class="modal-container">
-          <div class="modal-header">
-            <slot name="header">
-              <!--  -->
-            </slot>
-          </div>
-
-          <div class="modal-footer">
-            <slot name="footer">
-              <!--  -->
-            </slot>
+        <div class="w-2/4 bg-slate-200 rounded-sm modal-container">
+          <slot></slot>
+          <div class="h-10 bg-red-700 text-white p-2 rounded cursor-pointer">
+            <button @click="handleClose">Cancel</button>
           </div>
         </div>
       </div>
@@ -21,13 +14,16 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    handleClose() {
+      this.$emit("close");
+    },
+  },
+};
 </script>
 
 <style lang="css">
-.closeModalBtn {
-  color: #62acde;
-}
 .modal-mask {
   position: fixed;
   z-index: 9998;
@@ -46,14 +42,10 @@ export default {};
 }
 
 .modal-container {
-  width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
-  background-color: #fff;
-  border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
 .modal-header h3 {

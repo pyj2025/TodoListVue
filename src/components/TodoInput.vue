@@ -1,22 +1,27 @@
 <!-- eslint-disable vue/no-deprecated-slot-attribute -->
 <template>
-  <div class="flex items-center justify-center wrapper">
-    <input
-      type="text"
-      v-model="newItem"
-      placeholder="Type"
-      v-on:keypress.enter="addTodo"
-    />
-    <span class="addContainer" v-on:click="addTodo">
-      <i class="addBtn fas fa-plus" aria-hidden="true"></i>
-    </span>
+  <div class="flex justify-center items-center w-full h-10 rounded">
+    <div
+      class="flex flex-row flex-nowrap bg-white w-11/12 h-8 leading-8 rounded"
+    >
+      <input
+        class="w-full text-sm border-none ml-4"
+        type="text"
+        v-model="newItem"
+        placeholder="Type"
+        v-on:keypress.enter="handleAdd"
+      />
+      <div
+        class="w-12 bg-blue-900 rounded-r cursor-pointer"
+        title="Add"
+        v-on:click="handleAdd"
+      >
+        <i class="text-white fas fa-plus" aria-hidden="true"></i>
+      </div>
+    </div>
 
-    <WarningModal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">경고</h3>
-      <span slot="footer" @click="showModal = false"
-        >할 일을 입력하세요.
-        <i class="closeModalBtn fas fa-times" aria-hidden="true"></i>
-      </span>
+    <WarningModal v-if="showModal" @close="handleClose">
+      Please type anything.
     </WarningModal>
   </div>
 </template>
@@ -32,10 +37,10 @@ export default {
     };
   },
   methods: {
-    addTodo() {
+    handleAdd() {
       if (this.newItem !== "") {
-        var value = this.newItem && this.newItem.trim();
-        this.$emit("addTodo", value);
+        const val = this.newItem && this.newItem.trim();
+        this.$emit("addItem", val);
         this.clearInput();
       } else {
         this.showModal = !this.showModal;
@@ -43,6 +48,9 @@ export default {
     },
     clearInput() {
       this.newItem = "";
+    },
+    handleClose() {
+      this.showModal = false;
     },
   },
   components: {
@@ -52,34 +60,7 @@ export default {
 </script>
 
 <style scoped>
-.wrapper {
-  background: white;
-  width: 95%;
-  height: 30px;
-  line-height: 30px;
-  border-radius: 5px;
-  border: 1px solid red;
-}
-
 input:focus {
   outline: none;
-}
-
-.wrapper input {
-  border-style: none;
-  font-size: 1rem;
-  width: 100%;
-  margin-left: 0.5rem;
-}
-.addContainer {
-  float: right;
-  background: linear-gradient(to right, #6478fb, #8763fb);
-  display: inline-block;
-  width: 3rem;
-  border-radius: 0 5px 5px 0;
-}
-.addBtn {
-  color: white;
-  vertical-align: middle;
 }
 </style>

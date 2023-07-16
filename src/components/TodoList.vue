@@ -1,27 +1,54 @@
 <template>
-  <section>
-    <transition-group name="list" tag="ul">
-      <li v-for="(todoItem, index) in propsdata" :key="todoItem" class="shadow">
-        <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-        {{ todoItem }}
+  <div class="flex justify-center items-center w-full h-10 rounded">
+    <transition-group
+      name="list"
+      tag="ul"
+      class="flex flex-wrap w-11/12 h-8 leading-8 rounded"
+    >
+      <li
+        v-for="(item, idx) in propsData"
+        :key="item"
+        class="flex flex-row flex-nowrap w-full justify-start items-center"
+      >
+        <div class="w-8">
+          <span class="text-blue-800 mr-1 leading-10">
+            <i class="fas fa-check" aria-hidden="true"></i>
+          </span>
+        </div>
+
+        <div :title="item" class="w-11/12">
+          {{ item }}
+        </div>
         <span
-          class="removeBtn"
+          class="text-green-800 cursor-pointer w-4 btn"
           type="button"
-          @click="removeTodo(todoItem, index)"
+          @click="handleUpdate(item, idx)"
+          title="Edit"
         >
-          <i class="far fa-trash-alt" aria-hidden="true"></i>
+          <i class="fas fa-pencil-alt" aria-hidden="true"></i>
+        </span>
+        <span
+          class="text-red-700 cursor-pointer w-4 pl-2 btn"
+          type="button"
+          @click="handleDelete(item, idx)"
+          title="Delete"
+        >
+          <i class="fas fa-trash-alt" aria-hidden="true"></i>
         </span>
       </li>
     </transition-group>
-  </section>
+  </div>
 </template>
 
 <script>
 export default {
-  props: ["propsdata"],
+  props: ["propsData"],
   methods: {
-    removeTodo(todoItem, index) {
-      this.$emit("removeTodo", todoItem, index);
+    handleUpdate(item, idx) {
+      this.$emit("updateItem", item, idx);
+    },
+    handleDelete(item, idx) {
+      this.$emit("deleteItem", item, idx);
     },
   },
 };
@@ -44,23 +71,8 @@ li {
   background: white;
   border-radius: 5px;
 }
-.checkBtn {
-  line-height: 45px;
-  color: #62acde;
-  margin-right: 5px;
-}
-.removeBtn {
-  margin-left: auto;
-  color: #de4343;
-}
 
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
-}
-.list-enter,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+.btn {
+  margin-left: auto;
 }
 </style>

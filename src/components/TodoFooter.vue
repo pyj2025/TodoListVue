@@ -1,6 +1,11 @@
 <template>
-  <div class="footerContainer">
-    <div class="deleteAllBtn" @click="handleDeleteAll">Delete All</div>
+  <div class="w-full h-full flex justify-center content-center m-2">
+    <div
+      class="h-10 bg-red-700 text-white p-2 rounded cursor-pointer"
+      @click="handleDeleteAll"
+    >
+      Delete All
+    </div>
   </div>
 </template>
 
@@ -14,19 +19,4 @@ export default {
 };
 </script>
 
-<style scoped>
-.footerContainer {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.deleteAllBtn {
-  background-color: red;
-  color: rgb(230, 227, 227);
-  padding: 10px 10px;
-  border-radius: 10%;
-  cursor: pointer;
-}
-</style>
+<style scoped></style>
