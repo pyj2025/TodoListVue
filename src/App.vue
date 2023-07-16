@@ -37,9 +37,14 @@ export default {
       localStorage.removeItem(item);
       this.items.splice(idx, 1);
     },
-    handleUpdate(item, idx) {
+    handleUpdate(item, updatedItem, idx) {
       localStorage.removeItem(item);
-      this.items.splice(idx, 1);
+      localStorage.setItem(updatedItem, updatedItem);
+
+      let updatedArray = this.items;
+      updatedArray[idx] = updatedItem;
+
+      this.items = updatedArray;
     },
   },
   created() {

@@ -17,12 +17,17 @@
         </div>
 
         <div :title="item" class="w-11/12">
-          {{ item }}
+          <input
+            class="w-11/12 text-sm border-none ml-4"
+            type="text"
+            :value="item"
+            @change="changeInput(item, $event)"
+          />
         </div>
         <span
           class="text-green-800 cursor-pointer w-4 btn"
           type="button"
-          @click="handleUpdate(item, idx)"
+          @click="handleUpdate(item, idx, updatedItem)"
           title="Edit"
         >
           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
@@ -43,9 +48,19 @@
 <script>
 export default {
   props: ["propsData"],
+  data() {
+    return {
+      updatedItem: "",
+    };
+  },
   methods: {
+    changeInput(item, event) {
+      this.updatedItem = event.target.value;
+    },
     handleUpdate(item, idx) {
-      this.$emit("updateItem", item, idx);
+      if (this.updatedItem && item !== this.updatedItem) {
+        this.$emit("updateItem", item, this.updatedItem, idx);
+      }
     },
     handleDelete(item, idx) {
       this.$emit("deleteItem", item, idx);
@@ -70,6 +85,10 @@ li {
   padding: 0 0.9rem;
   background: white;
   border-radius: 5px;
+}
+
+input:focus {
+  outline: none;
 }
 
 .btn {
