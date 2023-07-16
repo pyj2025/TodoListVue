@@ -5,7 +5,7 @@
     <TodoList
       v-bind:propsData="items"
       @updateItem="handleUpdate"
-      @removeItem="handleRemove"
+      @deleteItem="handleDelete"
     ></TodoList>
     <TodoFooter v-on:deleteAll="handleDeleteAll"></TodoFooter>
   </div>
@@ -25,15 +25,15 @@ export default {
     };
   },
   methods: {
-    handleDeleteAll() {
-      localStorage.clear();
-      this.items = [];
-    },
     handleAdd(item) {
       localStorage.setItem(item, item);
       this.items.push(item);
     },
-    handleRemove(item, idx) {
+    handleDeleteAll() {
+      localStorage.clear();
+      this.items = [];
+    },
+    handleDelete(item, idx) {
       localStorage.removeItem(item);
       this.items.splice(idx, 1);
     },

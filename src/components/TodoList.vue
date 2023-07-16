@@ -8,7 +8,7 @@
       <li
         v-for="(item, idx) in propsData"
         :key="item"
-        class="flex flex-row flex-wrap w-full justify-start items-center"
+        class="flex flex-row flex-nowrap w-full justify-start items-center"
       >
         <div class="w-8">
           <span class="text-blue-800 mr-1 leading-10">
@@ -20,7 +20,7 @@
           {{ item }}
         </div>
         <span
-          class="text-green-800 cursor-pointer w-8"
+          class="text-green-800 cursor-pointer w-4 btn"
           type="button"
           @click="handleUpdate(item, idx)"
           title="Edit"
@@ -28,9 +28,9 @@
           <i class="fas fa-pencil-alt" aria-hidden="true"></i>
         </span>
         <span
-          class="text-red-700 cursor-pointer"
+          class="text-red-700 cursor-pointer w-4 pl-2 btn"
           type="button"
-          @click="handleRemove(item, idx)"
+          @click="handleDelete(item, idx)"
           title="Delete"
         >
           <i class="fas fa-trash-alt" aria-hidden="true"></i>
@@ -47,8 +47,8 @@ export default {
     handleUpdate(item, idx) {
       this.$emit("updateItem", item, idx);
     },
-    handleRemove(item, idx) {
-      this.$emit("removeItem", item, idx);
+    handleDelete(item, idx) {
+      this.$emit("deleteItem", item, idx);
     },
   },
 };
@@ -72,13 +72,7 @@ li {
   border-radius: 5px;
 }
 
-.list-enter-active,
-.list-leave-active {
-  transition: all 1s;
-}
-.list-enter,
-.list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+.btn {
+  margin-left: auto;
 }
 </style>
